@@ -1,0 +1,122 @@
+{
+  "name": "table-mouse-row-select",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "angular-nx-poc-app",
+  "sourceRoot": "apps/table-mouse-row-select/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/table-mouse-row-select",
+        "index": "apps/table-mouse-row-select/src/index.html",
+        "main": "apps/table-mouse-row-select/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/table-mouse-row-select/tsconfig.app.json",
+        "assets": [
+          "apps/table-mouse-row-select/src/favicon.ico",
+          "apps/table-mouse-row-select/src/assets"
+        ],
+        "styles": ["apps/table-mouse-row-select/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/table-mouse-row-select/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/table-mouse-row-select/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:webpack-dev-server",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "table-mouse-row-select:build:production"
+        },
+        "development": {
+          "browserTarget": "table-mouse-row-select:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "table-mouse-row-select:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/table-mouse-row-select/**/*.ts",
+          "apps/table-mouse-row-select/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/table-mouse-row-select/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "table-mouse-row-select:build",
+        "port": 4201,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "table-mouse-row-select:build:development"
+        },
+        "production": {
+          "buildTarget": "table-mouse-row-select:build:production"
+        }
+      }
+    }
+  }
+}
