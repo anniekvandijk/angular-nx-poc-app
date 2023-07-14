@@ -1,0 +1,11 @@
+.full-width-table {
+  width: 100%;
+}
+
+table {
+  user-select: none;
+}
+
+.selected-row {
+  background-color: rgb(209, 179, 236) !important; 
+}
