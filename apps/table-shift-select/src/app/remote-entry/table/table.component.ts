@@ -20,41 +20,10 @@ export class TableComponent implements AfterViewInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
-  mouseDownPressed = false;
   selectedRows: TableItem[] = [];
 
   constructor() {
     this.dataSource = new TableDataSource();
-  }
-
-  mousedown(row: TableItem) {
-    this.mouseDownPressed = true;
-    this.addSelectedRow(row);
-  }
-
-  mouseover(row: TableItem) {
-    if (this.mouseDownPressed) {
-      this.addSelectedRow(row);
-    }
-  }
-
-  mouseup() {
-    this.mouseDownPressed = false;
-  }
-
-
-  addSelectedRow(row: TableItem) {
-    if (!this.selectedRows.includes(row)) {
-      console.log('add row', this.selectedRows);
-      this.selectedRows.push(row);
-    } else {
-      console.log('remove row', this.selectedRows);
-      this.selectedRows = this.selectedRows.filter(r => r !== row);
-    }
-  }
-
-  isSelected(row: TableItem): boolean {
-    return this.selectedRows.includes(row);
   }
 
   ngAfterViewInit(): void {
