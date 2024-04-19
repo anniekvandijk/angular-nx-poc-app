@@ -3,6 +3,8 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/table-shift-select-e2e/src",
   "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["table-shift-select"],
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
@@ -21,13 +23,8 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/table-shift-select-e2e/**/*.{js,ts}"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["table-shift-select"]
+  }
 }

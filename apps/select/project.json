@@ -1,28 +1,26 @@
 {
-  "name": "table-mouse-row-select",
+  "name": "select",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "angular-nx-poc-app",
-  "sourceRoot": "apps/table-mouse-row-select/src",
+  "prefix": "app",
+  "sourceRoot": "apps/select/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/table-mouse-row-select",
-        "index": "apps/table-mouse-row-select/src/index.html",
-        "main": "apps/table-mouse-row-select/src/main.ts",
+        "outputPath": "dist/apps/select",
+        "index": "apps/select/src/index.html",
+        "main": "apps/select/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/table-mouse-row-select/tsconfig.app.json",
-        "assets": [
-          "apps/table-mouse-row-select/src/favicon.ico",
-          "apps/table-mouse-row-select/src/assets"
-        ],
-        "styles": ["apps/table-mouse-row-select/src/styles.scss"],
+        "tsConfig": "apps/select/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/select/src/favicon.ico", "apps/select/src/assets"],
+        "styles": ["apps/select/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
-          "path": "apps/table-mouse-row-select/webpack.config.js"
+          "path": "apps/select/webpack.config.ts"
         }
       },
       "configurations": {
@@ -41,7 +39,7 @@
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "apps/table-mouse-row-select/webpack.prod.config.js"
+            "path": "apps/select/webpack.prod.config.ts"
           }
         },
         "development": {
@@ -58,15 +56,15 @@
     "serve": {
       "executor": "@nx/angular:dev-server",
       "options": {
-        "port": 4201,
-        "publicHost": "http://localhost:4201"
+        "port": 4203,
+        "publicHost": "http://localhost:4203"
       },
       "configurations": {
         "production": {
-          "buildTarget": "table-mouse-row-select:build:production"
+          "buildTarget": "select:build:production"
         },
         "development": {
-          "buildTarget": "table-mouse-row-select:build:development"
+          "buildTarget": "select:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -74,34 +72,33 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "table-mouse-row-select:build"
+        "buildTarget": "select:build"
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/table-mouse-row-select/jest.config.ts"
+        "jestConfig": "apps/select/jest.config.ts"
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "table-mouse-row-select:build",
-        "port": 4201,
+        "buildTarget": "select:build",
+        "port": 4203,
         "watch": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "table-mouse-row-select:build:development"
+          "buildTarget": "select:build:development"
         },
         "production": {
-          "buildTarget": "table-mouse-row-select:build:production"
+          "buildTarget": "select:build:production"
         }
       }
     }
